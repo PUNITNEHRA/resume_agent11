@@ -30,21 +30,6 @@ async def upload_resume(file: UploadFile = File(...)):
     except Exception as e:
         raise HTTPException(status_code=400, detail=f"Error parsing file: {e}")
 
-# @router.post("/upload_resume/")
-# async def upload_resume(file: UploadFile = File(...)):
-#     # save temporarily
-#     contents = await file.read()
-#     tmp_path = f"/tmp/{file.filename}"
-#     with open(tmp_path, "wb") as f:
-#         f.write(contents)
-
-    # try:
-    #     text = extract_text_from_file(tmp_path, file.filename)
-    # except Exception as e:
-    #     raise HTTPException(status_code=400, detail=f"Error parsing file: {e}")
-
-    # return {"message": "Resume ingested successfully", "num_chunks": len(text.split("\n"))}
-
 @router.post("/critique/")
 async def critique():
     result = agent.critique()

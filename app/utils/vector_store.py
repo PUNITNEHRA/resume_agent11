@@ -1,21 +1,3 @@
-# from langchain.vectorstores import Chroma
-# from langchain.schema import Document as LC_Document
-# from typing import List, Dict, Any
-
-# class VectorStoreManager:
-#     def __init__(self, persist_dir: str = "./vectordb"):
-#         self.vs = Chroma(persist_directory=persist_dir, embedding_function=None)  # set embedding later
-
-#     def add_documents(self, docs: List[Dict[str, Any]]):
-#         # docs is e.g. [{"page_content": "...", "metadata": {…}}, …]
-#         lc_docs = [LC_Document(**d) for d in docs]
-#         self.vs.add_documents(lc_docs)
-
-#     def set_embedding(self, embedding_fn):
-#         self.vs.embedding_function = embedding_fn
-
-#     def query(self, query_str: str, k: int = 4):
-#         return self.vs.similarity_search(query_str, k=k)
 import os
 from langchain_community.vectorstores import Chroma
 from langchain.schema import Document as LCDocument
