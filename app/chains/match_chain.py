@@ -4,14 +4,14 @@ from dotenv import load_dotenv
 # Load environment variables from .env
 load_dotenv()
 
-# ✅ Get token from environment
+# Get token from environment
 HF_TOKEN = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 
 from langchain import LLMChain, PromptTemplate
 from langchain_huggingface import HuggingFaceEndpoint, ChatHuggingFace
 
 def make_match_chain():
-    # ✅ Define the prompt template
+    # Define the prompt template
     prompt = PromptTemplate(
         input_variables=["resume_snippets", "job_desc"],
         template="""
@@ -25,7 +25,7 @@ Compare and compute a match score (0-100). Then suggest which parts of the resum
 """
     )
 
-    # ✅ Use a Hugging Face model instead of OpenAI
+    #  Use a Hugging Face model instead of OpenAI
     llm = HuggingFaceEndpoint(
         huggingfacehub_api_token=HF_TOKEN,  # token from .env
         repo_id="google/gemma-2-2b-it",     # public HF model
@@ -37,5 +37,5 @@ Compare and compute a match score (0-100). Then suggest which parts of the resum
     # Wrap the HuggingFaceEndpoint with ChatHuggingFace
     chat_model = ChatHuggingFace(llm=llm)
 
-    # ✅ Return the LLM chain
+    #  Return the LLM chain
     return LLMChain(llm=chat_model, prompt=prompt)
