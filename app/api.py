@@ -11,17 +11,17 @@ agent = ResumeAgent()
 @router.post("/upload_resume/")
 async def upload_resume(file: UploadFile = File(...)):
     try:
-        # ✅ Create a temporary file safely
+        # Create a temporary file safely
         with tempfile.NamedTemporaryFile(delete=False, suffix=os.path.splitext(file.filename)[1]) as tmp:
             tmp_path = tmp.name
             # Write uploaded content to the temp file
             contents = await file.read()
             tmp.write(contents)
 
-        # ✅ Now extract text from the file
+        #  Now extract text from the file
         text = extract_text_from_file(tmp_path, file.filename)
 
-        # ✅ (optional) remove temp file after reading
+        #  (optional) remove temp file after reading
         os.remove(tmp_path)
 
         agent.ingest_resume(text)
