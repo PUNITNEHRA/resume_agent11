@@ -8,7 +8,7 @@ load_dotenv()
 HF_TOKEN = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 
 def make_resume_critique_chain():
-    # ✅ Define prompt template
+    #  Define prompt template
     prompt = PromptTemplate(
         input_variables=["resume_snippets", "guideline_snippets"],
         template="""
@@ -22,7 +22,7 @@ Please critique the resume: structure issues, clarity, missing elements, phrasin
 """
     )
 
-    # ✅ Set up Hugging Face model endpoint with token from .env
+    #  Set up Hugging Face model endpoint with token from .env
     llm = HuggingFaceEndpoint(
         huggingfacehub_api_token=HF_TOKEN,  # token loaded securely
         repo_id="google/gemma-2-2b-it",     # public HF model
@@ -34,5 +34,5 @@ Please critique the resume: structure issues, clarity, missing elements, phrasin
     # Wrap the HuggingFaceEndpoint with ChatHuggingFace
     chat_model = ChatHuggingFace(llm=llm)
 
-    # ✅ Return the LLM chain
+    #  Return the LLM chain
     return LLMChain(llm=chat_model, prompt=prompt)
