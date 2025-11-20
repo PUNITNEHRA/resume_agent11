@@ -3,7 +3,6 @@ import sys, os
 sys.dont_write_bytecode = True
 
 import time
-from dotenv import load_dotenv
 
 import pandas as pd
 import streamlit as st
