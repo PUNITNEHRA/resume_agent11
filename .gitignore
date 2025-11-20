@@ -1,0 +1,13 @@
+venv/
+__pycache__/
+*.pyc
+.env
+.streamlit/
+logs/
+uploads/
+*.db
+*.pkl
+*.bin
+*.model
+*.index
+.DS_Store
